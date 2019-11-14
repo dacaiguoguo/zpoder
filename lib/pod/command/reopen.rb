@@ -42,12 +42,13 @@ module Pod
       private
 
       def find_workspace_in(path)
+        puts "find xcworkspace at #{path}"
         path.children.find { |fn| fn.extname == '.xcworkspace' } || find_workspace_in_example(path)
       end
 
       def find_workspace_in_example(path)
         tofind = path + 'Example'
-        find_workspace_in(tofind)
+        find_workspace_in(tofind) if tofind.exist?
       end
     end
   end
